@@ -66,6 +66,25 @@ For `place_with_max_chairs`, within the time limit, I couldn't find a better way
     - category: The category column
     - total_places: The number of places in that category
     - total_chairs: The total chairs in that category
+```sql
+CREATE VIEW another_room_with_a_view AS
+SELECT category,
+       COUNT(name) AS total_places,
+       SUM(number_of_chairs) AS total_chairs
+FROM restaurants
+GROUP BY category
+ORDER BY category;
+```
+```
+category  | total_places | total_chairs
+------------+--------------+--------------
+ls1 large  |            1 |          152
+ls1 medium |           49 |         1223
+ls1 small  |           11 |           64
+ls2 large  |            5 |          489
+ls2 small  |            5 |           84
+other      |            2 |           67
+```
 
 7) Write a script in rails to:
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
