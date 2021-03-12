@@ -41,13 +41,8 @@
  GROUP BY post_code, cafes_with_max_chairs_in_post_code.name;
 ```
 
-I didn't validate the SQL methods, because I expect them to work as designed (`MAX(columnName)` should always return what's expected, etc.)
-For `chairs_pct` I validated this by running
-`SELECT SUM(chairs_pct) FROM the_room_with_a_view;`
-to make sure it all added up to 100.00%.
-<!-- Look into testing this -->
-For `place_with_max_chairs`, within the time limit, I couldn't find a better way to validate the data other than randomly selecting rows and manually verifying against the original data collection.
-<!-- Seriously tho -->
+Validations for this SQL query are in `spec/sql/sql_query_spec.rb` under
+`describe "Testing View Query for Section 4" do` (Line:4)
 
 5) Write a Rails script to categorize the cafes and write the result to the category according to the rules: [provide the script]  
     - If the Post Code is of the LS1 prefix type:  
@@ -75,16 +70,10 @@ FROM restaurants
 GROUP BY category
 ORDER BY category;
 ```
-```
-category  | total_places | total_chairs
-------------+--------------+--------------
-ls1 large  |            1 |          152
-ls1 medium |           49 |         1223
-ls1 small  |           11 |           64
-ls2 large  |            5 |          489
-ls2 small  |            5 |           84
-other      |            2 |           67
-```
+![SQL Query Results](public/sql_query_results.jpg)
+
+Validations for this SQL query are in `spec/sql/sql_query_spec.rb` under
+`describe "Testing View Query for Section 6" do` (Line:64)
 
 7) Write a script in rails to:
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
