@@ -90,7 +90,7 @@ other      |            2 |           67
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
     - For street cafes categorized as medium or large, write a script that concatenates the category name to the beginning of the name and writes it back to the name column
 
-    *Please share any tests you wrote for #7*
+    All testing for 7 is in `spec/tasks/mutate_restaurant_data_rename_with_category_spec.rb`
 
 8) Show your work and check your email for submission instructions.
 
