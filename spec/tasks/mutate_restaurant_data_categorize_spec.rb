@@ -1,7 +1,4 @@
 require 'rails_helper'
-require 'rake'
-
-Rails.application.load_tasks
 
 describe 'mutate restaurant data' do
   let (:run_rake_task) do
