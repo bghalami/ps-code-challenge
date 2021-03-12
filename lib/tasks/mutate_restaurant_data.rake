@@ -42,4 +42,27 @@ namespace :restaurant do
       restaurant.save
     end
   end
+
+  desc "Removes small restaurants and exports them to CSV and renames medium and large restaurants"
+  task :rename_with_category => :environment do
+    small_restaurants = Restaurant.where("category LIKE :suffix", suffix: "%#{' small'}")
+    medium_large_restaurants = Restaurant.where("category LIKE :suffix_one OR category LIKE :suffix_two", suffix_one: "%#{' medium'}", suffix_two: "%#{' large'}")
+    file = "#{Rails.root}/public/small_restaurants.csv"
+
+    if small_restaurants.size > 0
+      CSV.open( file, 'w' ) do |writer|
+        writer << small_restaurants.first.attributes.map { |attr, value| attr }
+        small_restaurants.each do |restaurant|
+          writer << restaurant.attributes.map { |attr,value| value }
+          restaurant.delete
+        end
+      end
+    end
+
+    medium_large_restaurants.each do |restaurant|
+      original_name = restaurant.name
+      restaurant.name = "#{restaurant.category} #{original_name}"
+      restaurant.save
+    end
+  end
 end
