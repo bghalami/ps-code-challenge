@@ -60,7 +60,7 @@ For `place_with_max_chairs`, within the time limit, I couldn't find a better way
     - For Post Code is something else:  
       - `category = 'other'`  
 
-    *Please share any tests you wrote for #5*
+    All testing for 5 is in `spec/tasks/mutate_restaurant_data_spec.rb`
 
 6) Write a custom view to aggregate the categories [provide view SQL AND the results of this view]
     - category: The category column
